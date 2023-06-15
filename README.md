@@ -1,4 +1,4 @@
-Medical Image Segmentation with U-Net Architecture
+## Medical Image Segmentation with U-Net Architecture
 
 This repository contains code for performing medical image segmentation using the U-Net architecture. The aim is to rectify the challenge of having a small dataset by utilizing the power of U-Net for segmentation tasks.
 
