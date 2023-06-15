@@ -34,6 +34,6 @@ Acknowledgments
 
 The implementation of the U-Net architecture is inspired by the original paper "U-Net: Convolutional Networks for Biomedical Image Segmentation" by Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
 
-License
+### License
 
 This is a personal project for portfolio purposes and does not come with a specific license. You are free to modify and use the code in this repository for personal or educational purposes. If you find it useful, kindly give credit by referencing this repository.
