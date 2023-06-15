@@ -1,6 +1,7 @@
 Medical Image Segmentation with U-Net Architecture
 
 This repository contains code for performing medical image segmentation using the U-Net architecture. The aim is to rectify the challenge of having a small dataset by utilizing the power of U-Net for segmentation tasks.
+
 Dataset
 
 The dataset used for this project can be found at [Kaggle: USSIM and SEGM](https://www.kaggle.com/datasets/ignaciorlando/ussimandsegm). Please download the dataset and adjust accordingly.
