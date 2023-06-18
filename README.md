@@ -14,7 +14,7 @@ The code consists of two main parts:
 
     U-Net Model: The code defines the U-Net model architecture using TensorFlow and Keras. It includes the encoding and decoding stages with convolutional and upsampling blocks. The model is compiled and trained on the prepared dataset.
 
-Due to the high computational requirements, the results are not printed in the notebook. However, the code is reliable and can be executed on a suitable computing environment.
+Due to the high computational requirements, the results are not printed in the notebook. However, the code is solid and can be executed on a suitable computing environment.
 
 ### Usage
 
@@ -30,7 +30,8 @@ Note: Adjust the file paths in the code to match the location of the dataset on 
 ### Results
 
 The results of the image segmentation will be obtained after training the U-Net model. You can analyze the results by visualizing the segmented images and evaluating the model's performance metrics.
-Acknowledgments
+
+### Acknowledgments
 
 The implementation of the U-Net architecture is inspired by the original paper "U-Net: Convolutional Networks for Biomedical Image Segmentation" by Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
 
