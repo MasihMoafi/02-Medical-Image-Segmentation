@@ -1,40 +1,79 @@
-## Medical Image Segmentation with U-Net Architecture
+# Ultrasound Nerve Segmentation
 
-This repository contains code for performing medical image segmentation using the U-Net architecture. The aim is to rectify the challenge of having a small dataset by utilizing the power of U-Net for segmentation tasks.
+This repository contains code for performing binary segmentation of nerve structures in ultrasound images using a U-Net model with a ResNet34 encoder backbone. The model leverages the [segmentation_models_pytorch](https://github.com/qubvel/segmentation_models.pytorch) library.
 
-### Dataset
+## Overview
 
-The dataset used for this project can be found at [Kaggle: USSIM and SEGM](https://www.kaggle.com/datasets/ignaciorlando/ussimandsegm). Please download the dataset and adjust accordingly.
+The project aims to segment nerve structures from ultrasound images. The segmentation model is based on the U-Net architecture, enhanced by a ResNet34 encoder pre-trained on ImageNet. The loss function used is the Dice Loss (binary mode), which is well-suited for segmentation tasks with imbalanced classes.
 
-### Code
+## Model Details
 
-The code consists of two main parts:
+- **Architecture:** U-Net
+- **Encoder Backbone:** ResNet34 (pre-trained on ImageNet)
+- **Input:** Grayscale ultrasound images (1 channel)
+- **Output:** Binary segmentation mask (nerve vs. background)
+- **Loss Function:** Dice Loss (binary)
 
-    Data Preparation: The code loads and preprocesses the training images and masks. It performs necessary resizing, normalization, and encoding of the masks. The data is split into a training set and a validation set.
+## Data Preparation
 
-    U-Net Model: The code defines the U-Net model architecture using TensorFlow and Keras. It includes the encoding and decoding stages with convolutional and upsampling blocks. The model is compiled and trained on the prepared dataset.
+- **Image Size:** 128x128 pixels
+- **Data Augmentation:** 
+  - Resizing
+  - Horizontal and vertical flips
+  - Random rotations and shifts/scales
+  - Gaussian noise addition
+  - Normalization
+- **Dataset:** The images and corresponding masks are expected to be in the training directory with `.tif` format. Masks are normalized to [0,1] and reshaped to have a channel dimension.
 
-Due to the high computational requirements, the results are not printed in the notebook. However, the code is solid and can be executed on a suitable computing environment.
+## Requirements
 
-### Usage
+- Python 3.x
+- PyTorch
+- torchvision
+- albumentations
+- segmentation_models_pytorch
+- numpy
+- scikit-learn
+- matplotlib
+- Pillow
 
-To use this code, follow these steps:
+Install dependencies via pip:
 
-    Download and organize the dataset as mentioned above.
-    Install the required dependencies, including TensorFlow, Keras, PIL, NumPy, and matplotlib.
-    Open the Jupyter Notebook or Python script and execute the code sequentially.
-    Monitor the training progress and evaluate the model performance.
+```
+pip install torch torchvision albumentations segmentation-models-pytorch numpy scikit-learn matplotlib Pillow
+Training
+The code includes a complete training loop with validation and early stopping:
 
-Note: Adjust the file paths in the code to match the location of the dataset on your system.
+Epochs: 50 (adjustable)
+Batch Size: 16
+Learning Rate: 1e-4 (with ReduceLROnPlateau scheduler)
+Metrics: Dice coefficient and pixel accuracy are computed per epoch.
+The best model (based on validation Dice) is saved as best_unet_nerve_segmentation.pth, and the final model is saved as final_unet_nerve_segmentation.pth.
+```
+## Running the Code
+Set Up the Data:
 
-### Results
+Place your training images and masks in the designated training directory (e.g., /kaggle/input/ultrasound-nerve-segmentation/train).
+Ensure that each image has a corresponding mask with _mask appended to the filename.
+Execute the Script:
 
-The results of the image segmentation will be obtained after training the U-Net model. You can analyze the results by visualizing the segmented images and evaluating the model's performance metrics.
+Run the Python script to start training:
+```
+python train.py
+```
+## Monitoring Training:
 
-### Acknowledgments
+The training loop prints the loss, Dice coefficient, and pixel accuracy for both training and validation datasets.
+After training, plots of loss, Dice coefficient, and accuracy over epochs will be displayed.
+Visualizing Results
+The script also includes functionality to visualize a few examples from the validation set. For each example, it displays:
 
-The implementation of the U-Net architecture is inspired by the original paper "U-Net: Convolutional Networks for Biomedical Image Segmentation" by Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+The input image.
+The ground truth mask.
+The predicted mask from the model.
+## Final Remarks
+This project demonstrates the application of a U-Net with a ResNet34 encoder for ultrasound nerve segmentation. The combination of effective data augmentation, a robust loss function, and a pre-trained encoder allows for improved performance on binary segmentation tasks.
 
-### License
+For further details or questions, please refer to the repository documentation or open an issue.
 
-This is a personal project for portfolio purposes and does not come with a specific license. You are free to modify and use the code in this repository for personal or educational purposes. If you find it useful, kindly give credit by referencing this repository.
+Happy coding!
